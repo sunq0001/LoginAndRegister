@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  if username
+    p  #{username} Logged In
+    button#logout.btn.btn-default 登出 
+  else
+    a.btn.btn-default(href = 'http://localhost:3000/users', role = 'button') 登陆/注册
+    

@@ -1,0 +1,15 @@
+mixin formGroup(configArr)
+    each val in configArr
+        span.text-right(class ='reminder')
+        div(class='form-group')
+            label(for=val.id) 
+                div(class="input-group")
+                    div(class='input-group-addon') 
+                        span(class="glyphicon glyphicon-" + val.icon)
+                    input(type=val.inputType class='form-control' id=val.id name=val.id placeholder=val.placeholderText)
+   
+mixin ulNavTabs(configArr)
+    ul(class != attributes.class )
+        each val in configArr
+            li(class = val.liClass)
+                a(href =val.link data-toggle='tab') #{val.linkText}

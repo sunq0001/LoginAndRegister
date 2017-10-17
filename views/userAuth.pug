@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible", content="ie=edge")
+        link(rel="stylesheet", href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css")
+        link(rel="stylesheet", href="/stylesheets/userAuthStyle.css")
+        title 用户验证界面
+    body
+        include includes/mixinFunc.pug
+        #forgetPassModal.modal.fade(tabindex='-1' role='dialog')
+            .modal-dialog(role='document')
+                .modal-content
+                    .modal-header
+                        button.close(type='button' data-dismiss='modal' aria-label='Close')
+                            span(aria-hidden='true') &times;
+                        h4.modal-title 若要找回密码，请输入邮箱或手机号
+                    .modal-body
+                         form.form-inline(action="/validation/send-forgotten-password-to-mail" method="POST")
+                             +formGroup([{inputType: 'text',id: 'forgetPassword',icon:'question-sign',placeholderText:"手机\\邮箱"}])
+                             button#findPass.btn.btn-primary(type="submit") 提交
+
+        div(class='container-fluid') 
+            div(class='row')
+                div(class='col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3')
+                    +ulNavTabs([
+                        {liClass:'active', link:'#login',linkText:'登陆'},
+                        {liClass:'', link:'#register',linkText:'注册'}])(class = 'nav nav-tabs')
+                    div(class='tab-content')
+                        div(class="tab-pane active" id='login')
+                            form(action="http://localhost:3000/validation/" method="POST")
+                                +formGroup([
+                                    {inputType: 'text',id: 'usernameLogin',icon:'user',placeholderText:"手机\\邮箱"},
+                                    {inputType:'password', id:'passwordLogin', icon:'lock', placeholderText:'密码'}
+                                        ])
+                                button(type="submit" id='loginSubmitBtn' class='btn btn-primary') 登陆
+                                button(type='button' id='forgetPassBtn' class='btn btn-link btn-sm') 忘记密码 
+                        div(class='tab-pane' id = 'register')
+                            form(action="http://localhost:3000/validation/" method="POST")
+                                +formGroup([
+                                    {inputType:'text',id:'usernameRegister',icon:'user',placeholderText:"输入手机\\邮箱地址"},
+                                    {inputType:'password',id:'passwordRegister',icon:'lock',placeholderText:"输入密码"},
+                                    {inputType:'password',id:'confirmPasswordRegister',icon:'thumbs-up',placeholderText:"输入密码"},
+                                    ])
+                                button(type="submit" id='registerSubmitBtn' class='btn btn-primary') 提交
+                                                           
+        
+       
+        script(src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js")
+        script(src="https://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.js")
+        script(src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js")
+        script(src="/crypto-js/crypto-js.js")
+        script(src="/javascripts/test.js")
+        script(src="/javascripts/userAuthFront.js")
+        
