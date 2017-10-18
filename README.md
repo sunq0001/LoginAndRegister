@@ -13,3 +13,9 @@
 
 - 验证码的生成
 - 手机验证
+
+## 用到的技术栈 ##
+- 语言：javascript
+- 前端：bootstrap, pug, jquery
+- 后端：express
+- 数据库极其驱动：mongoDB, mongoose
